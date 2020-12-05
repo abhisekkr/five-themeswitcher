@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from "react";     //here we are setting the default theme at the time of loading the application by useState
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import ThemeContext from "./Context/ThemeContext";
+import Header from "./Components/Header";
+import HeroSection from "./Components/HeroSection";
+
+const App = () => {
+  const themeHook= useState("light")                  //light will be the default at time of loading application
+  return(
+    <ThemeContext.Provider value={themeHook}>
+        <div>
+          <Header />
+          <HeroSection />
+        </div>
+    </ThemeContext.Provider>
+  )
+};
+
 
 export default App;
+
+//here the ThemeContext is the provider
+//when we want to consume what provider is providing then we wrap it into the consumer
